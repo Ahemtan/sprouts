@@ -1,50 +1,65 @@
-# React + TypeScript + Vite
+<h1 align="center">Sprout - A Minimalist To-Do App</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  🔥 An open-source to-do app built with React, TypeScript, and Tauri.
+</p>
 
-Currently, two official plugins are available:
+<div align="center">
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  [![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)](#)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](#)
+  [![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#)
+  [![Rust](https://img.shields.io/badge/Rust-%23000000.svg?e&logo=rust&logoColor=white)](#)
+  [![Tauri](https://img.shields.io/badge/Tauri-24C8D8?logo=tauri&logoColor=fff)](#)
+</div>
 
-## Expanding the ESLint configuration
+<p align="center">
+  A minimalist, open-source to-do app designed for productivity. Built with modern technologies like React, TypeScript, and Tauri.
+</p>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- 📃 **To-Do List**: Organize your daily tasks efficiently.
+- 🎯 **Kanban Board**: Manage and visualize tasks with a Kanban-style board.
+- 🔍 **Task Filter**: Easily filter and sort tasks based on your preferences.
+- 📆 **Calendar**: View and schedule tasks with a built-in calendar.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Detailed Overview
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 📃 To-Do List
+Quickly manage your daily tasks with a simple, intuitive to-do list.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### 🎯 Kanban Board
+Organize and track the progress of your tasks with a Kanban-style board, perfect for teams or personal projects.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### 🔍 Task Filter
+Effortlessly filter tasks by status, deadline, or priority to keep your focus sharp.
+
+### 📆 Calendar
+Manage and schedule tasks in a calendar view, so you never miss a deadline or important event.
+
+## Tech Stack
+
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A strongly typed programming language that enhances JavaScript.
+- **Tauri**: A framework for building tiny, secure, and fast desktop applications using web technologies.
+- **Rust**: The language used to build the core of the app, ensuring speed and efficiency.
+
+## Installation
+
+### Prerequisites
+
+- Node.js (v16 or later)
+- Yarn or npm or bun or pnpm
+- Tauri (for building desktop apps)
+
+### Steps
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/sprout.git
+   cd sprout
+
+## Note 
+
+This project is under development. Please feel free to contact for collaboration and bug report. -ahem

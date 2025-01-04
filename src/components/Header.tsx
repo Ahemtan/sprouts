@@ -1,3 +1,4 @@
+import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ModeToggle } from "./ui/mode-toggle";
 import { Separator } from "./ui/separator";
@@ -19,6 +20,14 @@ const Header = () => {
           <Button>New Task</Button>
           <ModeToggle />
         </div>
+      </div>
+      <div className="w-full flex flex-wrap justify-end gap-2">
+        <Badge className="text-base" variant={"default"}>All</Badge>
+        <Badge className="text-base" variant={"secondary"}>In Progress</Badge>
+        <Badge className="text-base" variant={"secondary"}>Completed</Badge>
+        <Badge className="text-base bg-green-500 hover:bg-green-400" variant={"secondary"}>Low</Badge>
+        <Badge className="text-base bg-yellow-500 hover:bg-yellow-400" variant={"secondary"}>Medium</Badge>
+        <Badge className="text-base bg-red-500 hover:bg-red-400" variant={"secondary"}>High</Badge>
       </div>
     </header>
   );
