@@ -1,12 +1,20 @@
 import { Button } from "./ui/button";
 import { ModeToggle } from "./ui/mode-toggle";
+import { Separator } from "./ui/separator";
+import { SidebarTrigger } from "./ui/sidebar";
+
 
 const Header = () => {
   return (
-    <header className="container mx-auto px-4 pt-2">
-      <div className="w-full h-20 flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">You To Do</h1>
+    <header className="px-4">
+      <div className="h-20 w-full flex items-center justify-between">
 
+        <div className="flex items-center">
+          <SidebarTrigger />
+          <Separator orientation="vertical" className="mr-2 h-6" />
+          <h1 className="text-xl">Your To Do</h1>
+        </div>
+        
         <div className="flex justify-center gap-4">
           <Button>New Task</Button>
           <ModeToggle />
