@@ -8,7 +8,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel
-} from "./ui/sidebar";
+} from "@/components/ui/sidebar";
 
 import { Home, Inbox } from "lucide-react"
 

@@ -1,8 +1,8 @@
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
-import { ModeToggle } from "./ui/mode-toggle";
-import { Separator } from "./ui/separator";
-import { SidebarTrigger } from "./ui/sidebar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 
 const Header = () => {
