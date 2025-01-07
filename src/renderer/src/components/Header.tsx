@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import AddTodoForm from "./add-todo";
 
 
 const Header = () => {
@@ -16,7 +16,7 @@ const Header = () => {
         </div>
         
         <div className="flex justify-center gap-4">
-          <Button>New Task</Button>
+          <AddTodoForm />
           <ModeToggle />
         </div>
       </div>
