@@ -1,25 +1,31 @@
-import { create } from "zustand";
-
-interface todoProps {
-  title: string;
-  status: string;
-  date: string;
-}
+import { create } from 'zustand'
+import { todoProps } from '@shared/types'
 
 interface todoTypes {
-  todos: todoProps[];
-  addTodo: (todo: todoProps) => void;
+  todos: todoProps[]
+  addTodo: (todo: todoProps) => void
+  loadTodos: () => void
 }
 
 export const useTodoStore = create<todoTypes>((set) => ({
   todos: [],
   addTodo: (todo) => {
     set((state) => {
-      const updatedTodos = [...state.todos, todo]; 
+      const updatedTodos = [...state.todos, todo]
 
-      window.context.saveNotes(updatedTodos);
+      window.context.saveNotes(updatedTodos)
 
-      return { todos: updatedTodos };
-    });
+      return { todos: updatedTodos }
+    })
   },
-}));
+
+  loadTodos: async () => {
+    try {
+      const todos: todoProps[] = await window.context.loadNotes()
+
+      set({ todos })
+    } catch (error) {
+      throw error
+    }
+  }
+}))

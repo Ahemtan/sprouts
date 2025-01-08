@@ -2,21 +2,23 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { saveTodosToFile, todoProps } from './lib'
+import { loadTodos, saveTodosToFile } from './lib'
+
+import { todoProps } from '@shared/types'
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
-    show: false,  // Prevent window from showing immediately
+    show: false, // Prevent window from showing immediately
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'), // Preload script path
       sandbox: false,
-      contextIsolation: true,  // Enable context isolation for security
-    },
+      contextIsolation: true // Enable context isolation for security
+    }
   })
 
   // Show window once ready
@@ -50,14 +52,17 @@ app.whenReady().then(() => {
 
   // Handle 'ping' IPC test
   ipcMain.on('ping', () => {
-    console.log('pong')  // Logging the 'pong' message in the console
+    console.log('pong') // Logging the 'pong' message in the console
   })
 
-  // Handle saving todos through IPC
   ipcMain.handle('saveNotes', (_, todos: todoProps[]) => {
-    // Save the received todos to a file
     saveTodosToFile(todos)
-    return 'Todos saved successfully'  // Return a success message
+    return 'Todos saved successfully'
+  })
+
+  ipcMain.handle('loadNotes', (_) => {
+    const todos = loadTodos()
+    return todos
   })
 
   // Create the main window
@@ -75,4 +80,3 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-

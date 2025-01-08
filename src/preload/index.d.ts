@@ -7,6 +7,7 @@ declare global {
     // api: unknown
     context: {
       saveNotes: (todos: todoProps[]) => Promise<string>;
+      loadNotes: () => Promise<todoProps[]>;
     }
   }
 }
