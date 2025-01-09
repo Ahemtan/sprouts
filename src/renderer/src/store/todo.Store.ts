@@ -3,20 +3,23 @@ import { todoProps } from '@shared/types'
 
 interface todoTypes {
   todos: todoProps[]
-  addTodo: (todo: todoProps) => void
+  addTodo: (title: string, status: string) => void
   loadTodos: () => void
 }
 
 export const useTodoStore = create<todoTypes>((set) => ({
   todos: [],
-  addTodo: (todo) => {
-    set((state) => {
-      const updatedTodos = [...state.todos, todo]
+  addTodo: async (title, status) => {
+    try {
+      await window.context.saveNotes(title, status)
 
-      window.context.saveNotes(updatedTodos)
+      const updatedTodos: todoProps[] = await window.context.loadNotes()
 
-      return { todos: updatedTodos }
-    })
+      set({ todos: updatedTodos })
+
+    } catch (error) {
+      console.log(error)
+    }
   },
 
   loadTodos: async () => {

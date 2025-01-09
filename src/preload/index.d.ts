@@ -3,10 +3,8 @@ import { ElectronAPI } from '@electron-toolkit/preload'
 
 declare global {
   interface Window {
-    // electron: ElectronAPI
-    // api: unknown
     context: {
-      saveNotes: (todos: todoProps[]) => Promise<string>;
+      saveNotes: (title: string, status: string) => Promise<void>;
       loadNotes: () => Promise<todoProps[]>;
     }
   }

@@ -18,7 +18,7 @@ const AddTodoForm = () => {
   const { addTodo } = useTodoStore()
 
   const [title, setTitle] = useState<string>('')
-  const [status, setStatus] = useState<string>('') // Default to an empty string
+  const [status, setStatus] = useState<string>('')
   const [open, setIsDialogOpen] = useState<boolean>(false)
 
   // Form submit handler
@@ -26,15 +26,13 @@ const AddTodoForm = () => {
     e.preventDefault()
 
     if (title && status) {
-      // Get current date and format it (ISO 8601 or localized string)
-      const date = new Date().toLocaleString()  // Or use .toISOString() for ISO format
-
-      // Clear form fields
       setTitle('')
       setStatus('')
 
+      console.log(status)
+
       // Add the new todo
-      addTodo({ title, status, date })
+      addTodo(title, status)
 
       // Close the dialog
       setIsDialogOpen(false)

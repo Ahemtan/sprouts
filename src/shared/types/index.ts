@@ -1,6 +1,7 @@
 export type todoProps = {
-    title: string;
-    status: string;
-    date: string;
-  };
+  id: string;
+  title: string;
+  status: string;
+  date: string;
+};
   

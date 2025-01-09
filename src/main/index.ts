@@ -2,9 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { loadTodos, saveTodosToFile } from './lib'
-
-import { todoProps } from '@shared/types'
+import { addTodo, loadTodos } from './lib'
 
 function createWindow(): void {
   // Create the browser window.
@@ -55,9 +53,18 @@ app.whenReady().then(() => {
     console.log('pong') // Logging the 'pong' message in the console
   })
 
-  ipcMain.handle('saveNotes', (_, todos: todoProps[]) => {
-    saveTodosToFile(todos)
-    return 'Todos saved successfully'
+  ipcMain.handle('saveNotes', async (_, args) => {
+
+    const { title, status} = args;
+    
+    try {
+      console.log(title, status)
+      await addTodo(title, status)
+      return 'Successfully saved todos!'
+    } catch (error) {
+      console.log(error)
+      return 'Failed to save todos~'
+    }
   })
 
   ipcMain.handle('loadNotes', (_) => {

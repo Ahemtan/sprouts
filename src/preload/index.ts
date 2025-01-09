@@ -1,5 +1,4 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import { todoProps } from '@shared/types/index'
 
 if (!process.contextIsolated) {
   throw new Error('Context bridge is not available in this process')
@@ -8,8 +7,8 @@ if (!process.contextIsolated) {
 try {
   contextBridge.exposeInMainWorld('context', {
     locale: navigator.language,
-    saveNotes: async (todos: todoProps[]): Promise<string> => {
-      return ipcRenderer.invoke('saveNotes', todos)
+    saveNotes: async (title: string, status: string): Promise<string> => {
+      return ipcRenderer.invoke('saveNotes', { title, status })
     },
     loadNotes: async (): Promise<string> => {
       return ipcRenderer.invoke('loadNotes')
