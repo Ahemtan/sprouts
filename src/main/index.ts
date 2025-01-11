@@ -2,7 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { addTodo, deleteTodo, loadTodos } from './lib'
+import { addTodo, deleteTodo, editTodo, loadTodos } from './lib'
 
 function createWindow(): void {
   // Create the browser window.
@@ -78,6 +78,17 @@ app.whenReady().then(() => {
     } catch (error) {
       console.log(error)
       return 'Failed to delete todo~'
+    }
+  })
+
+  ipcMain.handle('editNotes', async (_, args) => {
+    const { id, title, status } = args;
+    try {
+      await editTodo(id, title, status)
+      return 'Successfully edited todo!'
+    } catch (error) {
+      console.log(error)
+      return 'Failed to edit todo~'
     }
   })
 

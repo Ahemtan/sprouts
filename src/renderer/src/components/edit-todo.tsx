@@ -16,8 +16,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Pen } from 'lucide-react'
 
 import { todoProps } from '@shared/types'
+import { useTodoStore } from '@/store/todo.Store'
 
 const EditTodoForm = ({ todo }: { todo: todoProps }) => {
+
+  const { editTodos } = useTodoStore()
+
   const [title, setTitle] = useState<string>('')
   const [status, setStatus] = useState<string>('')
   const [open, setIsDialogOpen] = useState<boolean>(false)
@@ -34,7 +38,7 @@ const EditTodoForm = ({ todo }: { todo: todoProps }) => {
       setTitle('')
       setStatus('')
 
-      console.log(status)
+      editTodos(todo.id, title, status)
 
       // Close the dialog
       setIsDialogOpen(false)

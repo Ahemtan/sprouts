@@ -16,6 +16,9 @@ try {
     deleteNotes: async (id: string): Promise<string> => {
       return ipcRenderer.invoke('deleteNotes', id)
     },
+    editNotes: async (id: string, title: string, status: string): Promise<string> => {
+      return ipcRenderer.invoke('editNotes', { id, title, status })
+    }
   })
 } catch (error) {
   console.error('Failed to expose API:', error)

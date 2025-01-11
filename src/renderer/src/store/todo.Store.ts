@@ -6,6 +6,7 @@ interface todoTypes {
   addTodo: (title: string, status: string) => void
   loadTodos: () => void
   deleteTodos: (id: string) => void
+  editTodos: (id: string, title: string, status: string) => void
 }
 
 export const useTodoStore = create<todoTypes>((set) => ({
@@ -38,5 +39,16 @@ export const useTodoStore = create<todoTypes>((set) => ({
     } catch (error) {
       console.log(error)
     }
-  }
+  },
+
+  editTodos: async (id, title, status) => {
+    try {
+      await window.context.editNotes(id, title, status)
+
+      const todos: todoProps[] = await window.context.loadNotes()
+      set({ todos })
+    } catch (error) {
+      console.log(error)
+    }
+  },
 }))

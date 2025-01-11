@@ -7,6 +7,7 @@ declare global {
       saveNotes: (title: string, status: string) => Promise<void>;
       loadNotes: () => Promise<todoProps[]>;
       deleteNotes: (id: string) => Promise<void>;
+      editNotes: (id: string, title: string, status: string) => Promise<void>;
     }
   }
 }
