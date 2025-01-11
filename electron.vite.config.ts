@@ -1,11 +1,11 @@
 import { resolve } from 'path'
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react'
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin(), TanStackRouterVite()]
+    plugins: [externalizeDepsPlugin()]
   },
   preload: {
     plugins: [externalizeDepsPlugin()]
@@ -17,6 +17,6 @@ export default defineConfig({
         '@shared': resolve('src/shared')
       }
     },
-    plugins: [react()]
+    plugins: [TanStackRouterVite(), react()]
   }
 })

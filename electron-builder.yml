@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: sprouts
+appId: com.ahemtan.app
+productName: Sprouts
 directories:
   buildResources: build
 files:
@@ -12,7 +12,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: sprouts
+  executableName: Sprouts
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
@@ -33,7 +33,7 @@ linux:
     - AppImage
     - snap
     - deb
-  maintainer: electronjs.org
+  maintainer: https://github.com/ahemtan
   category: Utility
 appImage:
   artifactName: ${name}-${version}.${ext}

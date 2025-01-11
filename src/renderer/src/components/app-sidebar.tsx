@@ -27,7 +27,7 @@ const items = [
 
 const AppSidebar = () => {
   return (
-    <Sidebar variant="inset">
+    <Sidebar collapsible="icon" variant="inset">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Pages for Sprouts</SidebarGroupLabel>

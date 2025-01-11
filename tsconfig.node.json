@@ -4,6 +4,9 @@
   "compilerOptions": {
     "composite": true,
     "types": ["electron-vite/node"],
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
     "paths": {
       "@shared/*": [
         "./src/shared/*"

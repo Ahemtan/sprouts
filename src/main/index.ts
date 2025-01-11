@@ -1,12 +1,13 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import { join } from 'path'
+import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
+import icon from '../../resources/128x128.png?asset'
 import { addTodo, deleteTodo, editTodo, loadTodos } from './lib'
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    icon: path.join(__dirname, 'resources/icon.ico'), // Icon path
     width: 900,
     height: 670,
     show: false, // Prevent window from showing immediately
@@ -16,7 +17,7 @@ function createWindow(): void {
       preload: join(__dirname, '../preload/index.js'), // Preload script path
       sandbox: false,
       contextIsolation: true // Enable context isolation for security
-    }
+    },
   })
 
   // Show window once ready
