@@ -6,6 +6,7 @@ declare global {
     context: {
       saveNotes: (title: string, status: string) => Promise<void>;
       loadNotes: () => Promise<todoProps[]>;
+      deleteNotes: (id: string) => Promise<void>;
     }
   }
 }

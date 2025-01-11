@@ -2,7 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { addTodo, loadTodos } from './lib'
+import { addTodo, deleteTodo, loadTodos } from './lib'
 
 function createWindow(): void {
   // Create the browser window.
@@ -58,7 +58,6 @@ app.whenReady().then(() => {
     const { title, status} = args;
     
     try {
-      console.log(title, status)
       await addTodo(title, status)
       return 'Successfully saved todos!'
     } catch (error) {
@@ -70,6 +69,16 @@ app.whenReady().then(() => {
   ipcMain.handle('loadNotes', (_) => {
     const todos = loadTodos()
     return todos
+  })
+
+  ipcMain.handle('deleteNotes', async (_, id) => {
+    try {
+      await deleteTodo(id)
+      return 'Successfully deleted todo!'
+    } catch (error) {
+      console.log(error)
+      return 'Failed to delete todo~'
+    }
   })
 
   // Create the main window

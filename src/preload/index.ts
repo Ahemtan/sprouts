@@ -12,7 +12,10 @@ try {
     },
     loadNotes: async (): Promise<string> => {
       return ipcRenderer.invoke('loadNotes')
-    }
+    },
+    deleteNotes: async (id: string): Promise<string> => {
+      return ipcRenderer.invoke('deleteNotes', id)
+    },
   })
 } catch (error) {
   console.error('Failed to expose API:', error)

@@ -13,7 +13,7 @@ export const Route = createFileRoute('/')({
 })
 
 function Index() {
-  const { todos, loadTodos } = useTodoStore()
+  const { todos, loadTodos, deleteTodos } = useTodoStore()
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -22,6 +22,11 @@ function Index() {
 
     fetchTodos();
   }, [loadTodos])
+
+  const handleDelete = async (id: string) => {
+    await deleteTodos(id)
+    await loadTodos()
+  }
 
   return (
     <>
@@ -67,7 +72,7 @@ function Index() {
                     <EditTodoForm todo={todo} />
                   </Button>
                   <Separator orientation='vertical' className='h-8' />
-                  <Button variant={"ghost"}>
+                  <Button onClick={() => handleDelete(todo.id)} variant={"ghost"}>
                     <Trash className='text-red-600' />
                   </Button>
                 </div>
