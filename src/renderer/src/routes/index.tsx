@@ -1,8 +1,11 @@
+import EditTodoForm from '@/components/edit-todo'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { useTodoStore } from '@/store/todo.Store'
 import { createFileRoute } from '@tanstack/react-router'
+import { Trash } from 'lucide-react'
 import { useEffect } from 'react'
 
 export const Route = createFileRoute('/')({
@@ -47,7 +50,7 @@ function Index() {
           <ul id={"todo_list"} className="px-4 py-2">
             {todos.map((todo) => (
               <li
-                className="border-b-2 p-2 border-accent text-lg flex"
+                className="border-b-2 p-2 border-accent text-lg flex justify-between items-center"
                 key={todo.title}
               >
                 <div className='flex items-center gap-2'>
@@ -58,7 +61,16 @@ function Index() {
                     <p className='text-xs text-gray-500'>{todo.date}</p>
                   </div>
                 </div>
-                
+
+                <div className='flex'>
+                  <Button className='pr-2' variant={"ghost"}>
+                    <EditTodoForm todo={todo} />
+                  </Button>
+                  <Separator orientation='vertical' className='h-8' />
+                  <Button variant={"ghost"}>
+                    <Trash className='text-red-600' />
+                  </Button>
+                </div>
               </li>
             ))}
           </ul>

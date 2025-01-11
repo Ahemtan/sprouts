@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -10,18 +11,22 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useTodoStore } from '@/store/todo.Store'
-import { useState, ChangeEvent, FormEvent } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 
-const AddTodoForm = () => {
-  const { addTodo } = useTodoStore()
+import { Pen } from 'lucide-react'
 
+import { todoProps } from '@shared/types'
+
+const EditTodoForm = ({ todo }: { todo: todoProps }) => {
   const [title, setTitle] = useState<string>('')
   const [status, setStatus] = useState<string>('')
   const [open, setIsDialogOpen] = useState<boolean>(false)
 
-  // Form submit handler
+  useEffect(() => {
+    setTitle(todo.title)
+    setStatus(todo.status)
+  }, [])
+
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -30,9 +35,6 @@ const AddTodoForm = () => {
       setStatus('')
 
       console.log(status)
-
-      // Add the new todo
-      addTodo(title, status)
 
       // Close the dialog
       setIsDialogOpen(false)
@@ -44,13 +46,13 @@ const AddTodoForm = () => {
   return (
     <Dialog open={open} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button>New Todo</Button>
+        <Button variant={'ghost'}><Pen /></Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>📄 Add New Todo</DialogTitle>
+          <DialogTitle>✏️ Edit New Todo</DialogTitle>
           <DialogDescription>
-            Add a new task to your list with a title and priority status.
+            Edit your todo!
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleFormSubmit}>
@@ -90,4 +92,4 @@ const AddTodoForm = () => {
   )
 }
 
-export default AddTodoForm
+export default EditTodoForm
