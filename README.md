@@ -55,7 +55,7 @@ Manage and schedule tasks in a calendar view, so you never miss a deadline or im
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/sprout.git
+   git clone https://github.com/ahemtan/sprouts.git
    cd sprout
 
 ## Note 
